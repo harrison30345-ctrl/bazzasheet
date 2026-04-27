@@ -795,33 +795,30 @@ init();
 
 // ── SOCIAL PROOF TOASTS ──
 const SP_TIMES = ['just now','1 min ago','2 mins ago','3 mins ago','5 mins ago','7 mins ago'];
-let spTimer;
 function showToast(){
-  if(!indexData || indexData.length < 10) return;
-  const it = indexData[Math.floor(Math.random()*indexData.length)];
-  const chunk = chunkCache[Math.floor(it.i/CHUNK)];
-  if(!chunk) return;
-  const p = chunk[it.i % CHUNK];
+  const pool = chunkCache[0];
+  if(!pool || pool.length === 0) return;
+  // pick a random product with an image
+  let p, attempts = 0;
+  do { p = pool[Math.floor(Math.random()*pool.length)]; attempts++; }
+  while((!p || !p.image) && attempts < 20);
   if(!p || !p.image) return;
   document.getElementById('sp-name').textContent = (p.brand ? p.brand+' · ' : '') + p.name;
   document.getElementById('sp-time').textContent = SP_TIMES[Math.floor(Math.random()*SP_TIMES.length)];
   const img = document.getElementById('sp-img');
+  img.onerror = ()=>{ document.getElementById('sp-toast').classList.remove('show'); };
   img.src = p.image;
-  img.onerror = ()=>{ clearToast(); };
   const toast = document.getElementById('sp-toast');
   toast.classList.add('show');
   setTimeout(()=>{ toast.classList.remove('show'); }, 4000);
 }
-function clearToast(){ document.getElementById('sp-toast').classList.remove('show'); }
 function startToasts(){
   setTimeout(()=>{
     showToast();
-    spTimer = setInterval(showToast, 30000 + Math.random()*20000);
-  }, 8000);
+    setInterval(showToast, 15000 + Math.random()*10000);
+  }, 5000);
 }
-// Start after data loads
-const _origInit = init;
-document.addEventListener('DOMContentLoaded', ()=> setTimeout(startToasts, 3000));
+document.addEventListener('DOMContentLoaded', startToasts);
 </script>
 </body>
 </html>
