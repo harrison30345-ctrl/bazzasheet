@@ -283,57 +283,41 @@ main{flex:1;min-width:0}
   </div>
 </header>
 
-<!-- PROMO BANNER -->
-<div class="promo-bar" id="promo-bar">
-  <div class="promo-inner" id="promo-inner"></div>
-</div>
-
-<script>
-const PROMOS = [
-  {
-    logo: 'https://www.sugargoo.com/favicon.ico',
-    name: 'Sugar<span>goo</span>',
-    badge: '🎁 Exclusive',
-    headline: 'Sign up now and receive <em>800 CNY in coupons</em> — free to use on your first orders',
-    cta: 'Claim 800 CNY',
-    url: 'https://www.sugargoo.com/register?memberId=1079081877100962969'
-  },
-  {
-    logo: 'https://www.acbuy.com/favicon.ico',
-    name: 'AC<span>BUY</span>',
-    badge: '🎁 Exclusive',
-    headline: 'Sign up with code <em>KS93YC</em> and get exclusive rewards on your first haul',
-    cta: 'Sign up — KS93YC',
-    url: 'https://www.acbuy.com/login?loginStatus=register&code=KS93YC'
-  }
-];
-let promoIdx = 0;
-function renderPromo(){
-  const p = PROMOS[promoIdx];
-  document.getElementById('promo-inner').innerHTML = `
+<!-- PROMO BANNERS -->
+<div class="promo-bar">
+  <div class="promo-inner">
     <div class="promo-logo">
-      <img src="${p.logo}" alt="" onerror="this.style.display='none'">
-      <span class="promo-logo-name">${p.name}</span>
+      <img src="https://www.sugargoo.com/favicon.ico" alt="Sugargoo" onerror="this.style.display='none'">
+      <span class="promo-logo-name">Sugar<span>goo</span></span>
     </div>
     <div class="promo-sep"></div>
     <div class="promo-text">
-      <span class="promo-badge">${p.badge}</span>
-      <span class="promo-headline">${p.headline}</span>
+      <span class="promo-badge">🎁 Exclusive</span>
+      <span class="promo-headline">Sign up now and receive <em>800 CNY in coupons</em> — free to use on your first orders</span>
     </div>
-    <a class="promo-cta" href="${p.url}" target="_blank" rel="noopener">
-      ${p.cta}
+    <a class="promo-cta" href="https://www.sugargoo.com/register?memberId=1079081877100962969" target="_blank" rel="noopener">
+      Claim 800 CNY
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-    </a>`;
-  promoIdx = (promoIdx + 1) % PROMOS.length;
-}
-renderPromo();
-setInterval(()=>{
-  const bar = document.getElementById('promo-bar');
-  bar.style.opacity='0';
-  bar.style.transition='opacity .4s';
-  setTimeout(()=>{ renderPromo(); bar.style.opacity='1'; }, 400);
-}, 6000);
-</script>
+    </a>
+  </div>
+</div>
+<div class="promo-bar" style="background:linear-gradient(90deg,#0a0f1a 0%,#060d1a 50%,#040a14 100%);border-top:1px solid rgba(255,107,53,.1);border-bottom-color:rgba(255,107,53,.15)">
+  <div class="promo-inner">
+    <div class="promo-logo">
+      <img src="https://www.acbuy.com/favicon.ico" alt="ACBUY" onerror="this.style.display='none'">
+      <span class="promo-logo-name" style="color:#ff6b35">AC<span style="color:#fff">BUY</span></span>
+    </div>
+    <div class="promo-sep" style="background:rgba(255,107,53,.2)"></div>
+    <div class="promo-text">
+      <span class="promo-badge" style="background:rgba(255,107,53,.12);border-color:rgba(255,107,53,.3);color:#ff6b35">🎁 Exclusive</span>
+      <span class="promo-headline">Sign up with code <em style="color:#ff6b35">KS93YC</em> and get exclusive rewards on your first haul</span>
+    </div>
+    <a class="promo-cta" href="https://www.acbuy.com/login?loginStatus=register&code=KS93YC" target="_blank" rel="noopener" style="background:#ff6b35">
+      Sign up — KS93YC
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </div>
+</div>
 
 <div class="conv">
   <div class="conv-inner">
