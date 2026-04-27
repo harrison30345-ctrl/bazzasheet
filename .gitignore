@@ -1,0 +1,16 @@
+# Scraper scripts
+get_links*.py
+
+# Raw data files (large, not needed for site)
+links.json
+shorts.json
+products.json
+weidian_items.json
+
+# Python
+__pycache__/
+*.pyc
+*.log
+
+# System
+.DS_Store
